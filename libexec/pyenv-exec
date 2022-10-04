@@ -2,7 +2,7 @@
 #
 # Summary: Run an executable with the selected Python version
 #
-# Usage: pyenv exec <command> [arg1 arg2...]
+# Usage: pyenv exec [--env <version>] <command> [arg1 arg2...]
 #
 # Runs an executable by first preparing PATH so that the selected Python
 # version's `bin' directory is at the front.
@@ -22,6 +22,11 @@ if [ "$1" = "--complete" ]; then
 fi
 
 PYENV_VERSION="$(pyenv-version-name)"
+if [ "$1" = "--env" ]; then
+  PYENV_VERSION="$2"
+  shift 2
+fi
+
 PYENV_COMMAND="$1"
 
 if [ -z "$PYENV_COMMAND" ]; then
