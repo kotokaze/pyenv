@@ -23,6 +23,9 @@ fi
 
 PYENV_VERSION="$(pyenv-version-name)"
 if [ "$1" = "--env" ]; then
+  if !(pyenv-prefix "$2" >/dev/null); then
+    exit 1
+  fi
   PYENV_VERSION="$2"
   shift 2
 fi
